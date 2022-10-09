@@ -1,8 +1,12 @@
 import { test, expect, describe } from '@jest/globals';
-import path from 'path';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 import { getDataFromFile, isJsonFile, resolvePath } from '../src/helpers.js';
 
-const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const getFixturePath = (filename) => join(__dirname, '..', '__fixtures__', filename);
 
 describe('helpers Tests', () => {
   test('isJsonFile()', () => {
