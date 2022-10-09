@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "lint": "npx eslint ./"
+    "lint": "npx eslint ./",
+    "coverage": "jest --coverage"
   },
   "bin": {
     "gendiff": "bin/gendiff.js"
