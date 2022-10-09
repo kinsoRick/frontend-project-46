@@ -1,3 +1,3 @@
-import runProgram from "../src/cli.js";
+import runProgram from '../src/cli.js';
 
 runProgram();

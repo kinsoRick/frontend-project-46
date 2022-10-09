@@ -1,5 +1,5 @@
-import { Command } from "commander";
-import gendiff from "./index.js";
+import { Command } from 'commander';
+import gendiff from './index.js';
 
 const program = new Command();
 
@@ -20,7 +20,7 @@ const runProgram = () => {
 
   program.parse(process.argv);
 
-  console.log(gendiff(program.args[0], program.args[1]))
-}
+  console.log(gendiff(program.args[0], program.args[1]));
+};
 
 export default runProgram;
