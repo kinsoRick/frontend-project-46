@@ -20,7 +20,7 @@ const runProgram = () => {
 
   program.parse(process.argv);
 
-  gendiff(program.args[0], program.args[1])
+  console.log(gendiff(program.args[0], program.args[1]))
 }
 
 export default runProgram;

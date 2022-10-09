@@ -9,7 +9,7 @@ const gendiff = (filepath1, filepath2) => {
   if (isJsonFile(path1) && isJsonFile(path2)) {
     const difference = compareJSON(path1, path2);
 
-    return console.log(formatPlain(difference));
+    return formatPlain(difference);
   }
 };
 
@@ -28,30 +28,21 @@ export const createVirtualTree = (data1, data2) => {
     const keyExistData1 = Object.hasOwn(data1, key);
     const keyExistData2 = Object.hasOwn(data2, key);
 
-    if (!keyExistData1) return {
-      key,
-      type: ADDED,
-      value: data2[key],
-    }
+    if (!keyExistData1) return { key, type: ADDED, value: data2[key] }
 
-    if (!keyExistData2) return {
-      key,
-      type: REMOVED,
-      value: data1[key],
-    }
+    if (!keyExistData2) return { key, type: REMOVED, value: data1[key]}
 
     if (keyExistData1 && keyExistData2) {
       if (data1[key] !== data2[key]) return {
         key,
         type: CHANGED,
-        value: { old: data1[key], new: data2[key]},
+        value: {
+          old: data1[key],
+          new: data2[key]
+        },
       }
 
-      return  {
-        key,
-        type: UNCHANGED,
-        value: data1[key],
-      }
+      return {key, type: UNCHANGED, value: data1[key]}
     }
   });
 };
