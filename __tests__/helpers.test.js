@@ -1,5 +1,8 @@
 import { test, expect, describe } from '@jest/globals';
+import path from 'path';
 import { getDataFromFile, isJsonFile, resolvePath } from '../src/helpers.js';
+
+const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
 describe('helpers Tests', () => {
   test('isJsonFile()', () => {
@@ -12,9 +15,9 @@ describe('helpers Tests', () => {
 
   test('resolvePath()', () => {
     expect(resolvePath('./__fixtures__/file1.json'))
-      .toEqual('C:\\Projects\\frontend-project-46\\__fixtures__\\file1.json');
+      .toEqual(getFixturePath('file1.json'));
     expect(resolvePath('./'))
-      .toEqual('C:\\Projects\\frontend-project-46');
+      .toEqual(process.cwd());
   });
 
   test('getDataFromFile()', () => {
