@@ -1,4 +1,6 @@
 import { Command } from "commander";
+import gendiff from "./index.js";
+
 const program = new Command();
 
 const runProgram = () => {
@@ -17,6 +19,8 @@ const runProgram = () => {
     .argument('filepath2');
 
   program.parse(process.argv);
+
+  gendiff(program.args[0], program.args[1])
 }
 
-export  default  runProgram;
+export default runProgram;
