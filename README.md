@@ -34,6 +34,7 @@ npm install
 ```sh
 gendiff [options] <filepath1> <filepath2>
 ```
+[![asciicast](https://asciinema.org/a/527110.svg)](https://asciinema.org/a/527110)
 
 ## Run tests
 
