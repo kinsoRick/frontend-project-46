@@ -42,6 +42,7 @@ export const compareJSON = (filepath1, filepath2) => {
   return createVirtualTree(fileData1, fileData2);
 };
 
+// TODO: refactor main function
 const gendiff = (filepath1, filepath2) => {
   const path1 = resolvePath(filepath1);
   const path2 = resolvePath(filepath2);
@@ -51,6 +52,7 @@ const gendiff = (filepath1, filepath2) => {
 
     return formatPlain(difference);
   }
+
   return 'a';
 };
 
