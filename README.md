@@ -8,7 +8,7 @@
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
   <a href="https://github.com/kinsoRick/frontend-project-46/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/kinsoRick/genDiff" />
+    <img alt="License: MIT" src="https://img.shields.io/github/license/kinsoRick/frontend-project-46" />
   </a>
   <img alt="Actions Status" src="https://github.com/kinsoRick/frontend-project-46/workflows/hexlet-check/badge.svg"/>
   <a href="https://codeclimate.com/github/kinsoRick/frontend-project-46/maintainability">
