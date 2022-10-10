@@ -1,8 +1,9 @@
-import { getDataFromFile, isJsonFile, resolvePath } from './helpers.js';
+import { resolvePath } from './helpers.js';
 import {
   ADDED, CHANGED, REMOVED, UNCHANGED,
 } from './constants.js';
 import { formatPlain } from './formatter.js';
+import getData from './parsers.js';
 
 export const createVirtualTree = (data1, data2) => {
   let keys = Object.keys(data1).concat(Object.keys(data2));
@@ -35,25 +36,17 @@ export const createVirtualTree = (data1, data2) => {
   });
 };
 
-export const compareJSON = (filepath1, filepath2) => {
-  const fileData1 = JSON.parse(getDataFromFile(filepath1));
-  const fileData2 = JSON.parse(getDataFromFile(filepath2));
-
-  return createVirtualTree(fileData1, fileData2);
-};
-
 // TODO: refactor main function
 const gendiff = (filepath1, filepath2) => {
   const path1 = resolvePath(filepath1);
   const path2 = resolvePath(filepath2);
 
-  if (isJsonFile(path1) && isJsonFile(path2)) {
-    const difference = compareJSON(path1, path2);
+  const data1 = getData(path1);
+  const data2 = getData(path2);
 
-    return formatPlain(difference);
-  }
+  const difference = createVirtualTree(data1, data2);
 
-  return 'a';
+  return formatPlain(difference);
 };
 
 export default gendiff;
