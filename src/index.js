@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import format from './formatters/index.js';
 import getData from './parsers.js';
 import { resolvePath, isObject } from './helpers.js';
@@ -7,7 +8,7 @@ import {
 
 export const createVirtualTree = (data1, data2) => {
   const keys = Object.keys(data1).concat(Object.keys(data2));
-  const noDuplicates = [...new Set(keys)].sort(); // now we have non duplicated keys
+  const noDuplicates = _.sortBy([...new Set(keys)]); // now we have non duplicated keys
 
   return noDuplicates.map((key) => {
     const keyExistData1 = Object.hasOwn(data1, key);

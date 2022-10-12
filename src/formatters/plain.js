@@ -10,33 +10,27 @@ const getValue = (value) => {
 };
 
 const plain = (tree, prop = '') => {
-  const plainTree = [];
-
-  tree.forEach((node) => {
+  const plainTree = tree.map((node) => {
     const { key, type, value } = node;
     const property = prop + key;
 
     switch (type) {
       case ADDED:
-        plainTree.push(`Property '${property}' was added with value: ${getValue(value)}`);
-        break;
+        return `Property '${property}' was added with value: ${getValue(value)}`;
       case REMOVED:
-        plainTree.push(`Property '${property}' was removed`);
-        break;
+        return `Property '${property}' was removed`;
       case CHANGED:
-        plainTree.push(`Property '${property}' was updated. From ${getValue(value.old)} to ${getValue(value.new)}`);
-        break;
+        return `Property '${property}' was updated. From ${getValue(value.old)} to ${getValue(value.new)}`;
       case UNCHANGED:
-        break;
+        return [];
       case NESTED:
-        plainTree.push(`${plain(node.children, `${property}.`)}`);
-        break;
+        return `${plain(node.children, `${property}.`)}`;
       default:
         throw new Error('[FORMATTER]: given unknown type.');
     }
   });
 
-  return plainTree.join('\n');
+  return plainTree.flatMap((str) => str).join('\n');
 };
 
-export default (tree) => plain(tree); // removing last \n in string;
+export default (tree) => plain(tree);

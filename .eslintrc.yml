@@ -12,6 +12,7 @@ parserOptions:
   sourceType: module
 rules:
   fp/no-mutation: "error"
+  fp/no-mutating-methods: "error"
   no-console: 0
   import/extensions:
     - error
