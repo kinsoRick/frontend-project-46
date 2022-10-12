@@ -6,3 +6,4 @@ export const NESTED = 'NESTED';
 
 export const STYLISH = 'stylish';
 export const PLAIN = 'plain';
+export const JSON_FORMAT = 'json';
