@@ -23,9 +23,15 @@
 
 ### 🏠 [Homepage](https://github.com/kinsoRick/frontend-project-46#readme)
 
+## Minimal requirements
+* nodejs >= v16.*
+* npm >= 8.19.2
+
 ## Install
 
 ```sh
+git clone https://github.com/kinsoRick/frontend-project-46.git;
+cd frontend-project-46;
 npm install
 ```
 
@@ -34,7 +40,7 @@ npm install
 ```sh
 gendiff [options] <filepath1> <filepath2>
 ```
-[![asciicast](https://asciinema.org/a/527110.svg)](https://asciinema.org/a/527110)
+<a href="https://asciinema.org/a/VZxsJLIoK2lEo3E7kao2vxAdb" target="_blank"><img src="https://asciinema.org/a/VZxsJLIoK2lEo3E7kao2vxAdb.svg" /></a>
 
 ## Run tests
 
