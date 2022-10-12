@@ -1,7 +1,7 @@
 import { test, expect, describe } from '@jest/globals';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
-import { getDataFromFile, isJsonFile, resolvePath } from '../src/helpers.js';
+import { getDataFromFile, resolvePath } from '../src/helpers.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -9,14 +9,6 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => join(__dirname, '..', '__fixtures__', filename);
 
 describe('helpers Tests', () => {
-  test('isJsonFile()', () => {
-    expect(isJsonFile('sadasdq.json')).toBe(true);
-    expect(isJsonFile('sadasdq.json.json')).toBe(true);
-    expect(isJsonFile('sadasdq.asw.jsons')).toBe(false);
-    expect(isJsonFile('sadasdq.asw.js')).toBe(false);
-    expect(isJsonFile('sadasdq.json.txt')).toBe(false);
-  });
-
   test('resolvePath()', () => {
     expect(resolvePath('./__fixtures__/file1.json'))
       .toEqual(getFixturePath('file1.json'));

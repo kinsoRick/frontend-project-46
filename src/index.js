@@ -40,7 +40,6 @@ export const createVirtualTree = (data1, data2) => {
   });
 };
 
-// TODO: refactor main function
 const gendiff = (filepath1, filepath2, formatName = STYLISH) => {
   const path1 = resolvePath(filepath1);
   const path2 = resolvePath(filepath2);
