@@ -6,10 +6,10 @@ import {
 } from './constants.js';
 
 export const createVirtualTree = (data1, data2) => {
-  let keys = Object.keys(data1).concat(Object.keys(data2));
-  keys = [...new Set(keys)].sort(); // now we have non duplicated keys
+  const keys = Object.keys(data1).concat(Object.keys(data2));
+  const noDuplicates = [...new Set(keys)].sort(); // now we have non duplicated keys
 
-  return keys.map((key) => {
+  return noDuplicates.map((key) => {
     const keyExistData1 = Object.hasOwn(data1, key);
     const keyExistData2 = Object.hasOwn(data2, key);
 

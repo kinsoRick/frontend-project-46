@@ -8,44 +8,44 @@ const stringify = (obj, depth) => {
   const indent = getIndent(depth + 1);
 
   if (obj instanceof Object) {
-    let str = '';
+    const objectsToString = [];
     Object.entries(obj).forEach(([key, value]) => {
-      str += `${indent}    ${key}: ${stringify(value, depth + 1)}\n`;
+      objectsToString.push(`${indent}    ${key}: ${stringify(value, depth + 1)}\n`);
     });
-    return `{\n${str}${indent}}`;
+    return `{\n${objectsToString.join('')}${indent}}`;
   }
   return obj;
 };
 
 const stylish = (tree, depth) => {
   const indent = getIndent(depth);
-  let stylishTree = '';
+  const stylishTree = [];
   tree.forEach((node) => {
     const { key, type, value } = node;
 
     switch (type) {
       case ADDED:
-        stylishTree += `\n${indent}  + ${key}: ${stringify(value, depth)}`;
+        stylishTree.push(`\n${indent}  + ${key}: ${stringify(value, depth)}`);
         break;
       case REMOVED:
-        stylishTree += `\n${indent}  - ${key}: ${stringify(value, depth)}`;
+        stylishTree.push(`\n${indent}  - ${key}: ${stringify(value, depth)}`);
         break;
       case UNCHANGED:
-        stylishTree += `\n${indent}    ${key}: ${stringify(value, depth)}`;
+        stylishTree.push(`\n${indent}    ${key}: ${stringify(value, depth)}`);
         break;
       case CHANGED:
-        stylishTree += `\n${indent}  - ${key}: ${stringify(value.old, depth)}`;
-        stylishTree += `\n${indent}  + ${key}: ${stringify(value.new, depth)}`;
+        stylishTree.push(`\n${indent}  - ${key}: ${stringify(value.old, depth)}`);
+        stylishTree.push(`\n${indent}  + ${key}: ${stringify(value.new, depth)}`);
         break;
       case NESTED:
-        stylishTree += `\n${indent}    ${key}: {${stylish(node.children, depth + 1)}\n${getIndent(depth + 1)}}`;
+        stylishTree.push(`\n${indent}    ${key}: {${stylish(node.children, depth + 1)}\n${getIndent(depth + 1)}}`);
         break;
       default:
         throw new Error('[FORMATTER]: given unknown type.');
     }
   });
 
-  return stylishTree;
+  return stylishTree.join('');
 };
 
 export default (tree) => `{${stylish(tree, 1)}\n}`;

@@ -1,5 +1,6 @@
 plugins:
   - jest
+  - fp
 env:
   node: true
 extends:
@@ -10,6 +11,7 @@ parserOptions:
   ecmaVersion: latest
   sourceType: module
 rules:
+  fp/no-mutation: "error"
   no-console: 0
   import/extensions:
     - error

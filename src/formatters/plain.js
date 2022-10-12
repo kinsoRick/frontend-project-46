@@ -10,7 +10,7 @@ const getValue = (value) => {
 };
 
 const plain = (tree, prop = '') => {
-  let plainTree = '';
+  const plainTree = [];
 
   tree.forEach((node) => {
     const { key, type, value } = node;
@@ -18,26 +18,25 @@ const plain = (tree, prop = '') => {
 
     switch (type) {
       case ADDED:
-        plainTree += `Property '${property}' was added with value: ${getValue(value)}\n`;
+        plainTree.push(`Property '${property}' was added with value: ${getValue(value)}`);
         break;
       case REMOVED:
-        plainTree += `Property '${property}' was removed\n`;
+        plainTree.push(`Property '${property}' was removed`);
         break;
       case CHANGED:
-        plainTree += `Property '${property}' was updated. From ${getValue(value.old)} to ${getValue(value.new)}\n`;
+        plainTree.push(`Property '${property}' was updated. From ${getValue(value.old)} to ${getValue(value.new)}`);
         break;
       case UNCHANGED:
-        plainTree += '';
         break;
       case NESTED:
-        plainTree += `${plain(node.children, `${property}.`)}`;
+        plainTree.push(`${plain(node.children, `${property}.`)}`);
         break;
       default:
         throw new Error('[FORMATTER]: given unknown type.');
     }
   });
 
-  return plainTree;
+  return plainTree.join('\n');
 };
 
-export default (tree) => plain(tree).slice(0, -1); // removing last \n in string;
+export default (tree) => plain(tree); // removing last \n in string;
