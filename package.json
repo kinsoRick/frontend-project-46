@@ -4,7 +4,7 @@
   "description": "Compares two configuration files and shows a difference.",
   "main": "index.js",
   "scripts": {
-    "test": "node --experimental-vm-modules jest",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest\"",
     "lint": "npx eslint ./",
     "coverage": "jest --coverage"
   },
