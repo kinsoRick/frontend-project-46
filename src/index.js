@@ -49,7 +49,7 @@ const gendiff = (filepath1, filepath2, formatName = STYLISH) => {
 
   const difference = createVirtualTree(data1, data2);
 
-  return format(formatName)(difference, 2);
+  return format(formatName)(difference);
 };
 
 export default gendiff;

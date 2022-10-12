@@ -4,4 +4,5 @@ export const CHANGED = 'CHANGED';
 export const UNCHANGED = 'UNCHANGED';
 export const NESTED = 'NESTED';
 
-export const STYLISH = 'STYLISH';
+export const STYLISH = 'stylish';
+export const PLAIN = 'plain';
