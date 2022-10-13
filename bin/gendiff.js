@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import gendiff from '../src/index.js';
-import { STYLISH } from '../src/constants.js';
+import { FORMAT } from '../src/constants.js';
 
 const program = new Command();
 
@@ -13,7 +13,7 @@ const runProgram = () => {
     .description('Compares two configuration files and shows a difference.');
 
   // OPTIONS:
-  program.option('-f, --format <type>', 'output format', STYLISH);
+  program.option('-f, --format <type>', 'output format', FORMAT.STYLISH);
 
   // ARGUMENTS:
   program
