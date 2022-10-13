@@ -1,11 +1,14 @@
 install:
 	npm ci
 
-gendiff:
-	node bin/gendiff.js ./__fixtures__/file1.json ./__fixtures__/file2.json
-
 test:
 	npm run test
+
+test-coverage:
+	npm run coverage
+
+publish:
+	npm publish --dry-run
 
 lint:
 	npm run lint

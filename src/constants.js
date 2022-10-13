@@ -1,9 +1,13 @@
-export const ADDED = 'ADDED';
-export const REMOVED = 'REMOVED';
-export const CHANGED = 'CHANGED';
-export const UNCHANGED = 'UNCHANGED';
-export const NESTED = 'NESTED';
+export const TYPE = {
+  ADDED: 'ADDED',
+  REMOVED: 'REMOVED',
+  NESTED: 'NESTED',
+  CHANGED: 'CHANGED',
+  UNCHANGED: 'UNCHANGED',
+};
 
-export const STYLISH = 'stylish';
-export const PLAIN = 'plain';
-export const JSON_FORMAT = 'json';
+export const FORMAT = {
+  STYLISH: 'stylish',
+  PLAIN: 'plain',
+  JSON: 'json',
+};

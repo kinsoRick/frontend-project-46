@@ -1,5 +1,5 @@
 import {
-  ADDED, CHANGED, NESTED, REMOVED, UNCHANGED,
+  TYPE,
 } from '../constants.js';
 
 const getIndent = (depth) => '  '.repeat((depth * 2) - 2);
@@ -17,21 +17,22 @@ const stringify = (obj, depth) => {
 
 const stylish = (tree, depth) => {
   const indent = getIndent(depth);
+  const twoSpacesBefore = '  ';
   const stylishTree = tree.map((node) => {
     const { key, type, value } = node;
 
     switch (type) {
-      case ADDED:
-        return `${indent}  + ${key}: ${stringify(value, depth)}`;
-      case REMOVED:
-        return `${indent}  - ${key}: ${stringify(value, depth)}`;
-      case UNCHANGED:
-        return `${indent}    ${key}: ${stringify(value, depth)}`;
-      case CHANGED:
-        return [`${indent}  - ${key}: ${stringify(value.old, depth)}`,
-          `${indent}  + ${key}: ${stringify(value.new, depth)}`];
-      case NESTED:
-        return `${indent}    ${key}: {${stylish(node.children, depth + 1)}${getIndent(depth + 1)}}`;
+      case TYPE.ADDED:
+        return `${indent}${twoSpacesBefore}+ ${key}: ${stringify(value, depth)}`;
+      case TYPE.REMOVED:
+        return `${indent}${twoSpacesBefore}- ${key}: ${stringify(value, depth)}`;
+      case TYPE.UNCHANGED:
+        return `${indent}${twoSpacesBefore}  ${key}: ${stringify(value, depth)}`;
+      case TYPE.CHANGED:
+        return [`${indent}${twoSpacesBefore}- ${key}: ${stringify(value.old, depth)}`,
+          `${indent}${twoSpacesBefore}+ ${key}: ${stringify(value.new, depth)}`];
+      case TYPE.NESTED:
+        return `${indent}${twoSpacesBefore}  ${key}: {${stylish(node.children, depth + 1)}${getIndent(depth + 1)}}`;
       default:
         throw new Error('[FORMATTER]: given unknown type.');
     }

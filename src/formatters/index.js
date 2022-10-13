@@ -1,15 +1,15 @@
-import { PLAIN, STYLISH, JSON_FORMAT } from '../constants.js';
+import { FORMAT } from '../constants.js';
 import plain from './plain.js';
 import stylish from './stylish.js';
 import json from './json.js';
 
 const format = (formatName) => {
   switch (formatName) {
-    case STYLISH:
+    case FORMAT.STYLISH:
       return stylish;
-    case PLAIN:
+    case FORMAT.PLAIN:
       return plain;
-    case JSON_FORMAT:
+    case FORMAT.JSON:
       return json;
     default:
       throw new Error('[FORMATTER]: given unknown format name');
