@@ -14,29 +14,25 @@ export const createVirtualTree = (data1, data2) => {
     const keyExistData1 = Object.hasOwn(data1, key);
     const keyExistData2 = Object.hasOwn(data2, key);
 
+    if (!keyExistData1) return { key, type: TYPE.ADDED, value: data2[key] };
+    if (!keyExistData2) return { key, type: TYPE.REMOVED, value: data1[key] };
+
     if (isObject(data1[key]) && isObject(data2[key])) {
       return { key, type: TYPE.NESTED, children: createVirtualTree(data1[key], data2[key]) };
     }
 
-    if (!keyExistData1) return { key, type: TYPE.ADDED, value: data2[key] };
-    if (!keyExistData2) return { key, type: TYPE.REMOVED, value: data1[key] };
-
-    if (keyExistData1 && keyExistData2) {
-      if (data1[key] !== data2[key]) {
-        return {
-          key,
-          type: TYPE.CHANGED,
-          value: {
-            old: data1[key],
-            new: data2[key],
-          },
-        };
-      }
-
-      return { key, type: TYPE.UNCHANGED, value: data1[key] };
+    if (data1[key] !== data2[key]) {
+      return {
+        key,
+        type: TYPE.CHANGED,
+        value: {
+          old: data1[key],
+          new: data2[key],
+        },
+      };
     }
 
-    throw new Error('[VIRTUAL_TREE]: unknown error');
+    return { key, type: TYPE.UNCHANGED, value: data1[key] };
   });
 };
 

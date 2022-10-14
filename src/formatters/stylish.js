@@ -6,10 +6,11 @@ const getIndent = (depth) => '  '.repeat((depth * 2) - 2);
 
 const stringify = (obj, depth) => {
   const indent = getIndent(depth + 1);
+  const preIndent = `${indent}    `;
 
   if (obj instanceof Object) {
     const objectsToString = Object.entries(obj)
-      .map(([key, value]) => `${indent}    ${key}: ${stringify(value, depth + 1)}`);
+      .map(([key, value]) => `${preIndent}${key}: ${stringify(value, depth + 1)}`);
     return `{\n${objectsToString.join('\n')}\n${indent}}`;
   }
   return obj;
@@ -17,22 +18,23 @@ const stringify = (obj, depth) => {
 
 const stylish = (tree, depth) => {
   const indent = getIndent(depth);
-  const twoSpacesBefore = '  ';
+  const preIndent = `${indent}  `;
+
   const stylishTree = tree.map((node) => {
     const { key, type, value } = node;
 
     switch (type) {
       case TYPE.ADDED:
-        return `${indent}${twoSpacesBefore}+ ${key}: ${stringify(value, depth)}`;
+        return `${preIndent}+ ${key}: ${stringify(value, depth)}`;
       case TYPE.REMOVED:
-        return `${indent}${twoSpacesBefore}- ${key}: ${stringify(value, depth)}`;
+        return `${preIndent}- ${key}: ${stringify(value, depth)}`;
       case TYPE.UNCHANGED:
-        return `${indent}${twoSpacesBefore}  ${key}: ${stringify(value, depth)}`;
+        return `${preIndent}  ${key}: ${stringify(value, depth)}`;
       case TYPE.CHANGED:
-        return [`${indent}${twoSpacesBefore}- ${key}: ${stringify(value.old, depth)}`,
-          `${indent}${twoSpacesBefore}+ ${key}: ${stringify(value.new, depth)}`];
+        return [`${preIndent}- ${key}: ${stringify(value.old, depth)}`,
+          `${preIndent}+ ${key}: ${stringify(value.new, depth)}`];
       case TYPE.NESTED:
-        return `${indent}${twoSpacesBefore}  ${key}: {${stylish(node.children, depth + 1)}${getIndent(depth + 1)}}`;
+        return `${preIndent}  ${key}: {${stylish(node.children, depth + 1)}${getIndent(depth + 1)}}`;
       default:
         throw new Error('[FORMATTER]: given unknown type.');
     }

@@ -18,11 +18,6 @@ describe('helpers Tests', () => {
 
   test('getDataFromFile()', () => {
     expect(getDataFromFile(resolvePath('./__fixtures__/file1.json'), { encoding: 'utf8', flag: 'r' }))
-      .toEqual('{\n'
-        + '  "host": "hexlet.io",\n'
-        + '  "timeout": 50,\n'
-        + '  "proxy": "123.234.53.22",\n'
-        + '  "follow": false\n'
-        + '}');
+      .toEqual(getDataFromFile(getFixturePath('./results/helpers.result.txt')));
   });
 });

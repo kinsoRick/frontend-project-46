@@ -1,11 +1,11 @@
+import { isObject } from '../helpers.js';
 import {
   TYPE,
 } from '../constants.js';
 
 const getValue = (value) => {
-  if (value === null) return value;
   if (typeof value === 'string') return `'${value}'`;
-  if (typeof value === 'object') return '[complex value]';
+  if (isObject(value)) return '[complex value]';
   return value;
 };
 

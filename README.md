@@ -32,7 +32,7 @@
 ```sh
 git clone https://github.com/kinsoRick/frontend-project-46.git;
 cd frontend-project-46;
-npm install
+npm ci
 ```
 
 ## Usage
