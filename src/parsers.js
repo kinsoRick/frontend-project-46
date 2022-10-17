@@ -1,10 +1,7 @@
 import YAML from 'yaml';
-import path from 'path';
 import { getDataFromFile } from './helpers.js';
 
-export default (filepath) => {
-  const ext = path.extname(filepath);
-
+export default (filepath, ext) => {
   switch (ext) {
     case '.json':
       return JSON.parse(getDataFromFile(filepath));

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import path from 'path';
 import format from './formatters/index.js';
 import getData from './parsers.js';
 import { resolvePath, isObject } from './helpers.js';
@@ -39,9 +40,11 @@ export const createVirtualTree = (data1, data2) => {
 const gendiff = (filepath1, filepath2, formatName = FORMAT.STYLISH) => {
   const path1 = resolvePath(filepath1);
   const path2 = resolvePath(filepath2);
+  const ext1 = path.extname(filepath1);
+  const ext2 = path.extname(filepath2);
 
-  const data1 = getData(path1);
-  const data2 = getData(path2);
+  const data1 = getData(path1, ext1);
+  const data2 = getData(path2, ext2);
 
   const difference = createVirtualTree(data1, data2);
 

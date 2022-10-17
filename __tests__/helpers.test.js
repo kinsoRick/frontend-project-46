@@ -17,7 +17,7 @@ describe('helpers Tests', () => {
   });
 
   test('getDataFromFile()', () => {
-    expect(getDataFromFile(resolvePath('./__fixtures__/file1.json'), { encoding: 'utf8', flag: 'r' }))
+    expect(getDataFromFile(resolvePath('./__fixtures__/nested1.json'), { encoding: 'utf8', flag: 'r' }))
       .toEqual(getDataFromFile(getFixturePath('./results/helpers.result.txt')));
   });
 });

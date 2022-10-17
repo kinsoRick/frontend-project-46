@@ -11,9 +11,8 @@ const getFixturePath = (filename) => join(__dirname, '..', '__fixtures__', filen
 
 describe('Main logic', () => {
   test.each([
-    { file1: 'file1.yaml', file2: 'file2.yaml', result: './results/gendiff.test.result.txt' },
-    { file1: 'file2.yaml', file2: 'file1.yaml', result: './results/gendiff.yaml.result.txt' },
     { file1: 'nested1.json', file2: 'nested2.json', result: './results/gendiff.json.result.txt' },
+    { file1: 'nested1.yml', file2: 'nested2.yaml', result: './results/gendiff.json.result.txt' },
   ])('gendiff($file1, $file2)', ({ file1, file2, result }) => {
     expect(gendiff(
       getFixturePath(file1),
@@ -21,11 +20,19 @@ describe('Main logic', () => {
     )).toEqual(getDataFromFile(getFixturePath(result)));
   });
 
-  test('gendiff() plain', () => {
+  test('gendiff() plain format', () => {
     expect(gendiff(
       getFixturePath('nested1.json'),
       getFixturePath('nested2.json'),
       'plain',
     )).toEqual(getDataFromFile(getFixturePath('./results/gendiff.plain.result.txt')));
+  });
+
+  test('gendiff() json format', () => {
+    expect(gendiff(
+      getFixturePath('nested1.json'),
+      getFixturePath('nested2.json'),
+      'json',
+    )).toEqual(getDataFromFile(getFixturePath('./results/gendiff.json_format.result.txt')));
   });
 });
