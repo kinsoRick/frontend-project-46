@@ -6,6 +6,11 @@ export const TYPE = {
   UNCHANGED: 'UNCHANGED',
 };
 
+export const FILE_TYPE = {
+  YAML: 'YAML',
+  JSON: 'JSON',
+};
+
 export const FORMAT = {
   STYLISH: 'stylish',
   PLAIN: 'plain',
