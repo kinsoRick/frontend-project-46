@@ -3,14 +3,14 @@ import plain from './plain.js';
 import stylish from './stylish.js';
 import json from './json.js';
 
-const format = (formatName) => {
+const format = (formatName, tree) => {
   switch (formatName) {
     case FORMAT.STYLISH:
-      return stylish;
+      return stylish(tree);
     case FORMAT.PLAIN:
-      return plain;
+      return plain(tree);
     case FORMAT.JSON:
-      return json;
+      return json(tree);
     default:
       throw new Error('[FORMATTER]: given unknown format name');
   }

@@ -1,7 +1,7 @@
 import { test, expect, describe } from '@jest/globals';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
-import gendiff from '../src/index.js';
+import { gendiffByFilePath } from '../src/index.js';
 import { getDataFromFile } from '../src/helpers.js';
 import { FORMAT } from '../src/constants.js';
 
@@ -29,7 +29,7 @@ describe('Main logic', () => {
       file1, file2, result, type,
     },
   ) => {
-    expect(gendiff(
+    expect(gendiffByFilePath(
       getFixturePath(file1),
       getFixturePath(file2),
       type,

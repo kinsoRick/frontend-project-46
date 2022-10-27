@@ -21,20 +21,18 @@ const stylish = (tree, depth) => {
   const preIndent = `${indent}  `;
 
   const stylishTree = tree.map((node) => {
-    const { key, type, value } = node;
-
-    switch (type) {
+    switch (node.type) {
       case TYPE.ADDED:
-        return `${preIndent}+ ${key}: ${stringify(value, depth)}`;
+        return `${preIndent}+ ${node.key}: ${stringify(node.value, depth)}`;
       case TYPE.REMOVED:
-        return `${preIndent}- ${key}: ${stringify(value, depth)}`;
+        return `${preIndent}- ${node.key}: ${stringify(node.value, depth)}`;
       case TYPE.UNCHANGED:
-        return `${preIndent}  ${key}: ${stringify(value, depth)}`;
+        return `${preIndent}  ${node.key}: ${stringify(node.value, depth)}`;
       case TYPE.CHANGED:
-        return [`${preIndent}- ${key}: ${stringify(value.old, depth)}`,
-          `${preIndent}+ ${key}: ${stringify(value.new, depth)}`];
+        return [`${preIndent}- ${node.key}: ${stringify(node.value.old, depth)}`,
+          `${preIndent}+ ${node.key}: ${stringify(node.value.new, depth)}`];
       case TYPE.NESTED:
-        return `${preIndent}  ${key}: {${stylish(node.children, depth + 1)}${getIndent(depth + 1)}}`;
+        return `${preIndent}  ${node.key}: {${stylish(node.children, depth + 1)}${getIndent(depth + 1)}}`;
       default:
         throw new Error('[FORMATTER]: given unknown type.');
     }

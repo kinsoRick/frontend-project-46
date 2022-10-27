@@ -1,13 +1,12 @@
 import YAML from 'yaml';
-import { getDataFromFile } from './helpers.js';
-import { FILE_TYPE } from './constants.js';
+import { DATA_TYPE } from './constants.js';
 
-export default (filepath, type) => {
+export default (data, type) => {
   switch (type) {
-    case FILE_TYPE.JSON:
-      return JSON.parse(getDataFromFile(filepath));
-    case FILE_TYPE.YAML:
-      return YAML.parse(getDataFromFile(filepath));
+    case DATA_TYPE.JSON:
+      return JSON.parse(data);
+    case DATA_TYPE.YAML:
+      return YAML.parse(data);
     default:
       throw new Error('[FILENAME]: given unknown file type');
   }

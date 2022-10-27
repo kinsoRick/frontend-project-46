@@ -6,7 +6,7 @@ export const TYPE = {
   UNCHANGED: 'UNCHANGED',
 };
 
-export const FILE_TYPE = {
+export const DATA_TYPE = {
   YAML: 'YAML',
   JSON: 'JSON',
 };
